@@ -1,0 +1,4 @@
+<%= turbo_stream.update "category_id" do %>
+        <option value>---------</option>
+        <%= options_from_collection_for_select(@categories, :id, :name, include_blank: 'Всі') %>
+<% end %>
