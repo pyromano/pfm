@@ -40,3 +40,4 @@ config/database.yml
 .solargraph.yml
 .ruby-version
 .ruby-gemset
+/node_modules
