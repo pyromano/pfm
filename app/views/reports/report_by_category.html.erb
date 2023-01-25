@@ -1,0 +1,11 @@
+<h1>Reports#report_by_category</h1>
+<p>Find me in app/views/reports/report_by_category.html.erb</p>
+
+<% @report.each do |cat, sum| %>
+    <ul>
+        <li>
+            <span><%= cat %>:</span>
+            <span><%= sum %></span>
+        </li>
+    </ul>
+<% end %>

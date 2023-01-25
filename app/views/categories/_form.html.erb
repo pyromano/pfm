@@ -22,6 +22,11 @@
   </div>
 
   <div>
+    <%= form.label :money_flow, style: "display: block" %>
+    <%= form.select(:money_flow, Category.money_flows) %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
