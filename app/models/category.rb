@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  @@money_flows = { 'expenses' => 1, 'gains' => 2 }
+  @@money_flows = { 'expenses' => 1, 'income' => 2 }
   cattr_reader :money_flows
 
   has_many :operations, dependent: :delete_all
@@ -12,7 +12,7 @@ class Category < ApplicationRecord
   end
 
   def self.income_code
-    money_flows['gains']
+    money_flows['income']
   end
 
   def self.outcome_code
