@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "@rails/request.js": "^0.0.8"
+    "@rails/request.js": "^0.0.8",
+    "flatpickr": "^4.6.13",
+    "stimulus-chartjs": "^5.0.0",
+    "stimulus-flatpickr": "^3.0.0-0"
   }
 }

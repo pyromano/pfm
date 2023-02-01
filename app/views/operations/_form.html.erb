@@ -12,26 +12,26 @@
   <% end %>
 
   <div>
-    <%= form.label :amount, style: "display: block" %>
-    <%= form.text_field :amount %>
+    <%= form.label :amount, class: "form-label" %>
+    <%= form.text_field :amount, class: "form-control" %>
+  </div>
+
+  <div data-controller="date-picker"  data-date-picker-mode-value="single">
+    <%= form.label "Date", :odate, class: "form-label" %>
+    <%= form.date_field :odate, class: "form-control datepicker", data: {"date-picker-target": "picker"}  %>
   </div>
 
   <div>
-    <%= form.label :odate, style: "display: block" %>
-    <%= form.datetime_field :odate %>
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_field :description, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <%= form.label :category_id, class: "form-label" %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name,{}, {class: "form-select"}) %>
   </div>
 
   <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.collection_select(:category_id, Category.all, :id, :name) %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit action, class: "btn btn-success mt-4" %>
   </div>
 <% end %>

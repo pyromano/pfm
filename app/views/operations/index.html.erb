@@ -1,14 +1,36 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Operations</h1>
-
-<div id="operations">
-  <% @operations.each do |operation| %>
-    <%= render operation %>
-    <p>
-      <%= link_to "Show this operation", operation %>
-    </p>
-  <% end %>
+<%= render "shared/alert" %>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="float-start">Operations</h2>
+    <div class="float-end">
+      <%= link_to new_operation_path, class: "btn btn-success" do %>
+        <i class="fa fa-plus"></i> New operation
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New operation", new_operation_path %>
+<div class="row">
+  <div class="col-md-12">
+    <div id="categories">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category</th>
+            <th scope="col">Type</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @operations.each do |operation| %>
+            <%= render "operation_row", operation: operation %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

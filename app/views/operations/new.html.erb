@@ -1,9 +1,8 @@
-<h1>New operation</h1>
+<div class="row mt-4">
+  <div class="col-md-6 col-xl-4">
+    <h2>New operation</h2>
 
-<%= render "form", operation: @operation %>
+    <%= render "form", operation: @operation, action: "Create" %>
 
-<br>
-
-<div>
-  <%= link_to "Back to operations", operations_path %>
+  </div>
 </div>

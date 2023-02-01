@@ -1,0 +1,16 @@
+<tr id="<%= dom_id operation %>">
+  <th scope="row"><%= operation.id %></th>
+  <td><%= operation.category.name %></td>
+  <td><%= operation.category.money_flow_name %></td>
+  <td><%= operation.amount %></td>
+  <td><%= operation.odate.strftime("%Y-%m-%d") %></td>
+  <td><%= operation.description %></td>
+  <td>
+    <%= link_to edit_operation_path(operation), class: "mx-1 text-success text-decoration-none" do %>
+      <i class="fa fa-edit"></i>
+    <% end %>
+    <%= link_to operation, class: "mx-1 text-danger text-decoration-none", data: {  turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </td>
+</tr>

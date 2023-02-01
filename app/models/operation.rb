@@ -6,5 +6,5 @@ class Operation < ApplicationRecord
 
   scope :where_money_flow, ->(flow_code) { joins(:category).where(categories: { money_flow: flow_code }) }
   scope :sum_by_category, -> { joins(:category).group('categories.name').sum(:amount) }
-  scope :sum_by_date, -> { group(:odate).sum(:amount) }
+  scope :sum_by_date, -> { group('DATE(odate)').sum(:amount) }
 end

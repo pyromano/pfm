@@ -1,10 +1,8 @@
-<h1>Editing category</h1>
+<div class="row mt-4">
+  <div class="col-md-6 col-xl-4">
+    <h2>Editing category</h2>
 
-<%= render "form", category: @category %>
+    <%= render "form", category: @category, action: "Update" %>
 
-<br>
-
-<div>
-  <%= link_to "Show this category", @category %> |
-  <%= link_to "Back to categories", categories_path %>
+  </div>
 </div>

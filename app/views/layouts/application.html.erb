@@ -7,15 +7,73 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://ga.jspm.io/npm:flatpickr@4.6.9/dist/flatpickr.min.css">
     <%= javascript_importmap_tags %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   </head>
-  <ul>
-    <li><%= link_to "Categories", categories_path %></li>
-    <li><%= link_to "Operations", operations_path %></li>
-    <li><%= link_to "Report", reports_index_path %></li>
-  </ul>
-
   <body>
-    <%= yield %>
+    <nav class="navbar mb-4 navbar-expand-lg bg-secondary" data-bs-theme="dark" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><%= link_to "Categories", categories_path, class: "nav-link #{ 'active' if current_page?(categories_path) }" %></li>
+            <li class="nav-item"><%= link_to "Operations", operations_path, class: "nav-link #{ 'active' if current_page?(operations_path) }" %></li>
+            <li class="nav-item"><%= link_to "Report", reports_index_path, class: "nav-link #{ 'active' if current_page?(reports_index_path) }" %></li>
+          </ul>
+          <div class="d-flex" >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <!-- <div class="jumbotron">
+           <div class="container">
+           <h1 class="display-3">Hello, world!</h1>
+           <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+           <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+           </div>
+           </div> -->
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <!-- <div class="row">
+             <div class="col-md-4">
+             <h2>Heading</h2>
+             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+             </div>
+             <div class="col-md-4">
+             <h2>Heading</h2>
+             <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+             </div>
+             <div class="col-md-4">
+             <h2>Heading</h2>
+             <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+             <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+             </div> -->
+          <%= yield %>
+        </div>
+
+        </br>
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+
+    <footer class="container ">
+      <p>&copy; Personal Finance Manager 2023</p>
+    </footer>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <%= form_with(model: category) do |form| %>
   <% if category.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h3><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h3>
 
       <ul>
         <% category.errors.each do |error| %>
@@ -12,21 +12,21 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_field :description, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :money_flow, style: "display: block" %>
-    <%= form.select(:money_flow, Category.money_flows) %>
+    <%= form.label :money_flow, class: "form-label" %>
+    <%= form.select(:money_flow, Category.money_flows, {}, {class: "form-select"}) %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit action, class: "btn btn-success mt-4" %>
   </div>
 <% end %>

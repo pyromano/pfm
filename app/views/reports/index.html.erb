@@ -1,25 +1,20 @@
-<h1>Reports#index</h1>
-<p>Find me in app/views/reports/index.html.erb</p>
-
-<%= form_with method: "get" do |form| %>
-    <div>
-        <%= form.label "Дата YYYY-MM-DD" %>
-        <%= form.date_field :start_date %>
+<%= render "shared/alert" %>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Report</h2>
     </div>
-    <div>
-        <%= form.label "Дата YYYY-MM-DD" %>
-        <%= form.date_field :end_date %>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-5 col-xl-3">
+        <%= render 'form' %>
     </div>
-    <div data-controller="money-flow">
-        <%= form.label "Тип операції" %>
-        <%= form.select(:money_flow_direction,  Category.money_flows.to_a.reverse,{},{ data: {action: "change->money-flow#change"}} ) %>
+    <div class="col mt-2 justify-content-center">
+        <p class="text-center text-secondary" id="chart-report">
+            <%= turbo_frame_tag "report" do %>
+                <%= image_tag "no-data-document" %>
+            </br>
+            No data requested yet
+            <% end %>
+        </p>
     </div>
-    <div>
-        <%= form.label "Категорія" %>
-        <%= form.collection_select(:category_id, Category.where(money_flow: Category.money_flows.to_a.reverse.first.last), :id, :name, {include_blank: '---------'}, {data: {'money-flow_target': "category_select"}}) %>
-    </div>
-    <div>
-        <%= form.submit "За категоріями", formaction: reports_report_by_category_path %>
-        <%= form.submit "По датах", formaction: reports_report_by_dates_path  %>
-    </div>
-<% end %>
+</div>

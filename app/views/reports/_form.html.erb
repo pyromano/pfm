@@ -1,0 +1,16 @@
+<%#= form_with method: class: "row gx-3 gy-2 " do |form| %>
+<%= form_with method: "get" do |form| %>
+    <%#= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div data-controller="date-picker" data-date-picker-mode-value="range" class="mt-3">
+        <%= form.label "Date range", class: "form-label" %>
+        <%= form.text_field :date_range, value: params[:date_range], class: "form-control datepicker-range", data: {"date-picker-target": "picker"} %>
+    </div>
+    <div data-controller="money-flow" class="mt-3">
+        <%= form.label "Operation", class: "form-label" %>
+        <%= form.select(:money_flow,  Category.money_flows.to_a,{selected: params[:money_flow]},{ data: {action: "change->money-flow#change"}, class: "form-select"} ) %>
+    </div>
+    <div class="mt-4 mb-4">
+        <%= form.submit "By categories", formaction: reports_report_by_category_path, class: "btn btn-success mx-1" %>
+        <%= form.submit "By days", formaction: reports_report_by_dates_path, class: "btn btn-warning mx-1" %>
+    </div>
+<% end %>
