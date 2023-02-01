@@ -3,7 +3,8 @@ class OperationsController < ApplicationController
 
   # GET /operations or /operations.json
   def index
-    @operations = Operation.includes(:category).all.page params[:page]
+    @q = Operation.ransack params[:q]
+    @operations = @q.result.includes(:category).all.page params[:page]
   end
 
   # GET /operations/1 or /operations/1.json
