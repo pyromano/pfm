@@ -1,0 +1,17 @@
+<nav class="navbar mb-4 navbar-expand-lg bg-secondary" data-bs-theme="dark" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><%= link_to "Categories", categories_path, class: "nav-link #{ 'active' if current_page?(categories_path) }" %></li>
+                <li class="nav-item"><%= link_to "Operations", operations_path, class: "nav-link #{ 'active' if current_page?(operations_path) }" %></li>
+                <li class="nav-item"><%= link_to "Report", reports_index_path, class: "nav-link #{ 'active' if current_page?(reports_index_path) }" %></li>
+            </ul>
+            <div class="d-flex" >
+            </div>
+        </div>
+    </div>
+</nav>
