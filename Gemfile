@@ -52,6 +52,8 @@ gem 'ransack'
 # gem "image_processing", "~> 1.2"
 gem 'requestjs-rails'
 
+gem 'faker'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -59,7 +61,6 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'faker'
   gem 'solargraph'
   gem 'solargraph-rails'
   gem 'web-console'
@@ -76,4 +77,10 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+gem 'dockerfile-rails', '>= 1.0.0', group: :development
+
+group :production do
+  gem 'pg', '~> 1.4'
 end
