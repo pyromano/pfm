@@ -8,15 +8,15 @@
 
 # outcome
 categories = [
-  { name: 'Food', desc: 'Food prices and spending.', flow: Category.outcome_code,
+  { name: 'Food', desc: 'Food prices and spending.', flow: Category.spending_code,
     faker: 'Faker::Food.ingredient', operations: 58 },
-  {  name: 'Devices', desc: 'Tech stuff', flow: Category.outcome_code,
+  {  name: 'Devices', desc: 'Tech stuff', flow: Category.spending_code,
      faker: 'Faker::Device.model_name', operations: 1 },
-  {  name: 'House', desc: 'Appliance and other houshold expenses.', flow: Category.outcome_code,
+  {  name: 'House', desc: 'Appliance and other houshold spending.', flow: Category.spending_code,
      faker: 'Faker::House.furniture', operations: 10 },
-  {  name: 'Stuff', desc: 'The monthly cost of using rental property.', flow: Category.outcome_code,
+  {  name: 'Stuff', desc: 'The monthly cost of using rental property.', flow: Category.spending_code,
      faker: 'Faker::Marketing.buzzwords', operations: 20 },
-  {  name: 'Hobby', desc: 'Some expenses for hobby.', flow: Category.outcome_code,
+  {  name: 'Hobby', desc: 'Some spending for hobby.', flow: Category.spending_code,
      faker: 'Faker::Hobby.activity', operations: 18 }
 ]
 

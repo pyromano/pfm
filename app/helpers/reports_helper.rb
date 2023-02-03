@@ -26,17 +26,17 @@ module ReportsHelper
   end
 
   def prev_month
-    prev_month = Date.parse(@start_date) - 1.month
+    prev_month = @date_range[:start_date] - 1.month
     "#{prev_month.beginning_of_month} to #{prev_month.end_of_month}"
   end
 
   def next_month
-    next_month = Date.parse(@end_date) + 1.month
+    next_month = @date_range[:end_date] + 1.month
     "#{next_month.beginning_of_month} to #{next_month.end_of_month}"
   end
 
   def current_dates_label
-    "#{Date.parse(@start_date).strftime('%Y %b %d')} - #{Date.parse(@end_date).strftime('%Y %b %d')}"
+    "#{@date_range[:start_date].strftime('%Y %b %d')} - #{@date_range[:start_date].strftime('%Y %b %d')}"
   end
 
   def report_by_category_path(date_range, params)
