@@ -6,6 +6,11 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-5 col-xl-3">
+    <div style="color: red">
+        <% flash.each do |type, msg| %>
+            <h6><%= msg %></h6>
+        <% end %>
+    </div>
         <%= render 'form' %>
     </div>
     <div class="col mt-2 justify-content-center">

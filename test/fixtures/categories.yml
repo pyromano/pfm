@@ -1,9 +1,28 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: MyStringOne
   description: MyString
+  money_flow: 1
 
 two:
-  name: MyString
+  name: MyStringTwo
   description: MyString
+  money_flow: 1
+
+valid:
+  name: MyStringValid
+  description: MyString
+  money_flow: 1
+
+income_category:
+  name: income
+  description: MyDesc
+  money_flow: 2
+
+<% (1..13).map do |i|%>
+out_category<%= i %>:
+  name: spending_category_<%= i %>
+  description: MyDesc
+  money_flow: 1
+<% end %>
