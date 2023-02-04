@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
     with_required_params do
       with_valid_dates_format do |date_range|
         @date_range = date_range
-        @categories = Category.where(money_flow: params['money_flow'])
+        @categories = Category.select(:id, :name).where(money_flow: params['money_flow'])
 
         money_flow = Category.money_flows.key(params[:money_flow].to_i)
         @operations_report = Operation.send("#{money_flow}_report_by_date", **@date_range)
