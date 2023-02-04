@@ -35,9 +35,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @categories.each do |category| %>
-            <%= render "category_row", category: category %>
-          <% end %>
+            <%= render @categories %>
         </tbody>
       </table>
     </div>

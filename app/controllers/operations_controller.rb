@@ -5,6 +5,7 @@ class OperationsController < ApplicationController
   def index
     @q = Operation.ransack params[:q]
     @operations = @q.result.includes(:category).all.page params[:page]
+    @categories_list = Category.select(:id, :name).order(:name)
   end
 
   # GET /operations/1 or /operations/1.json
