@@ -29,3 +29,27 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-sm-12 col-md-5 col-xl-4">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @operations_report.each do |category,amount| %>
+            <tr>
+                <td><%= category %></td>
+                <td><%= amount %></td>
+            </tr>
+            <% end %>
+            <tr>
+                <td><b>Total:</b></td>
+                <td><%= total %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
