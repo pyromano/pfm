@@ -10,8 +10,8 @@ class Operation < ApplicationRecord
 
   Category.money_flows.keys.each do |money_flow|
     %w[category date].each do |report_type|
-      define_singleton_method("#{money_flow.downcase}_report_by_#{report_type}") do |**opts|
-        where(odate: opts[:start_date]..opts[:end_date]).where_money_flow(Category.send("#{money_flow}_code")).send("sum_by_#{report_type}")
+      define_singleton_method("#{money_flow.downcase}_report_by_#{report_type}") do |date_range|
+        where(odate: date_range.start_date..date_range.end_date).where_money_flow(Category.send("#{money_flow}_code")).send("sum_by_#{report_type}")
       end
     end
   end

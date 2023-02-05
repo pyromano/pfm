@@ -26,26 +26,28 @@ module ReportsHelper
   end
 
   def prev_month
-    prev_month = @date_range[:start_date] - 1.month
-    "#{prev_month.beginning_of_month} to #{prev_month.end_of_month}"
+    "#{@date_range.prev_month.beginning_of_month} to #{@date_range.prev_month.end_of_month}"
   end
 
   def next_month
-    next_month = @date_range[:end_date] + 1.month
-    "#{next_month.beginning_of_month} to #{next_month.end_of_month}"
+    "#{@date_range.next_month.beginning_of_month} to #{@date_range.next_month.end_of_month}"
   end
 
-  def current_dates_label
-    "#{@date_range[:start_date].strftime('%Y %b %d')} - #{@date_range[:start_date].strftime('%Y %b %d')}"
+  def all_categories_report_by_dates_path
+    reports_report_by_dates_path(date_range: @date_range, money_flow: params['money_flow'])
   end
 
-  def report_by_category_path(date_range, params)
-    reports_report_by_category_path(date_range:, money_flow: params['money_flow'],
+  def category_report_by_dates_path(category_id)
+    reports_report_by_dates_path(date_range: @date_range, money_flow: params['money_flow'], category_id:)
+  end
+
+  def report_by_category_path(direction)
+    reports_report_by_category_path(date_range: send(direction), money_flow: params['money_flow'],
                                     category_id: params['category_id'])
   end
 
-  def report_by_dates_path(date_range, params)
-    reports_report_by_dates_path(date_range:, money_flow: params['money_flow'],
+  def report_by_dates_path(direction)
+    reports_report_by_dates_path(date_range: send(direction), money_flow: params['money_flow'],
                                  category_id: params['category_id'])
   end
 end

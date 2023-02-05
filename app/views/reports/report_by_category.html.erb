@@ -23,9 +23,9 @@
             Total: <%= total %>
         </div>
         <div class="mt-3 text-center text-secondary">
-            <%= link_to '< Prev month' , report_by_category_path(prev_month, params), class: "text-decoration-none" %>
-            [ <%= current_dates_label %> ]
-            <%= link_to 'Next month >', report_by_category_path(next_month, params), class: "text-decoration-none" %>
+            <%= link_to '< Prev month' , report_by_category_path(:prev_month), class: "text-decoration-none" %>
+            [ <%= @date_range.humanize %> ]
+            <%= link_to 'Next month >', report_by_category_path(:next_month), class: "text-decoration-none" %>
         </div>
     </div>
 </div>

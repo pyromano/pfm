@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
       with_valid_dates_format do |date_range|
         @date_range = date_range
         money_flow = Category.money_flows.key(params[:money_flow].to_i)
-        @operations_report = Operation.send("#{money_flow}_report_by_category", **@date_range)
+        @operations_report = Operation.send("#{money_flow}_report_by_category", @date_range)
       end
     end
   end
@@ -18,12 +18,12 @@ class ReportsController < ApplicationController
         @categories = Category.select(:id, :name).where(money_flow: params['money_flow'])
 
         money_flow = Category.money_flows.key(params[:money_flow].to_i)
-        @operations_report = Operation.send("#{money_flow}_report_by_date", **@date_range)
+        @operations_report = Operation.send("#{money_flow}_report_by_date", @date_range)
 
         return unless params['category_id'].present?
 
         @operations_report = Operation.where(category_id: params['category_id'])
-                                      .send("#{money_flow}_report_by_date", **@date_range)
+                                      .send("#{money_flow}_report_by_date", @date_range)
       end
     end
   end
@@ -40,12 +40,11 @@ class ReportsController < ApplicationController
 
   def with_valid_dates_format
     begin
-      start_date, end_date = params['date_range'].split(' to ').map { |e| Date.parse(e) }
+      date_range = DateRangeService.new(params[:date_range])
     rescue Date::Error
       flash[:alert] = 'Invalid date format'
       render :index, status: :unprocessable_entity and return
     end
-    end_date = start_date + 1.day unless end_date.present?
-    yield({ start_date:, end_date: })
+    yield date_range
   end
 end

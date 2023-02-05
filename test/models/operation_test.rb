@@ -27,7 +27,8 @@ class OperationTest < ActiveSupport::TestCase
   end
   test '#income_report_by_category' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
-    report = Operation.income_report_by_category(start_date: Date.new(2023, 1, 1), end_date: Date.new(2023, 2, 1))
+    date_range = DateRangeService.new('2023-01-01 to 2023-02-01')
+    report = Operation.income_report_by_category(date_range)
     expected = { 'income' => BigDecimal(1000) }
 
     assert_equal(expected, report)
@@ -35,7 +36,8 @@ class OperationTest < ActiveSupport::TestCase
   end
   test '#spending_report_by_category' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
-    report = Operation.spending_report_by_category(start_date: Date.new(2023, 1, 9), end_date: Date.new(2023, 1, 20))
+    date_range = DateRangeService.new('2023-01-09 to 2023-01-20')
+    report = Operation.spending_report_by_category(date_range)
 
     expected = { 'spending_category_1' => BigDecimal(100), 'spending_category_2' => BigDecimal(500) }
 
@@ -45,7 +47,8 @@ class OperationTest < ActiveSupport::TestCase
   test '#income_report_by_date' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per month, amount 1000
-    report = Operation.income_report_by_date(start_date: Date.new(2023, 1, 1), end_date: Date.new(2023, 2, 1))
+    date_range = DateRangeService.new('2023-01-01 to 2023-02-01')
+    report = Operation.income_report_by_date(date_range)
     expected = { '2023-02-01' => BigDecimal(1000) }
 
     assert_equal(expected, report)
@@ -54,7 +57,8 @@ class OperationTest < ActiveSupport::TestCase
   test '#spending_report_by_date' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per day, amount 50
-    report = Operation.spending_report_by_date(start_date: Date.new(2023, 1, 10), end_date: Date.new(2023, 1, 14))
+    date_range = DateRangeService.new('2023-01-10 to 2023-01-14')
+    report = Operation.spending_report_by_date(date_range)
     expected = {
       '2023-01-10' => BigDecimal(50),
       '2023-01-11' => BigDecimal(50),
