@@ -42,7 +42,7 @@
             <% @operations_report.each do |category,amount| %>
             <tr>
                 <td><%= category %></td>
-                <td><%= amount %></td>
+                <td><%= amount.round(2) %></td>
             </tr>
             <% end %>
             <tr>
