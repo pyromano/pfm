@@ -8,7 +8,11 @@
         <%= form.select(:money_flow,  Category.money_flows.to_a,{selected: params[:money_flow]},{ data: {action: "change->money-flow#change"}, class: "form-select"} ) %>
     </div>
     <div class="mt-4 mb-4">
-        <%= form.submit "By categories", formaction: reports_report_by_category_path, class: "btn btn-success mx-1" %>
-        <%= form.submit "By days", formaction: reports_report_by_dates_path, class: "btn btn-warning mx-1" %>
+        <%= button_tag( formaction: reports_report_by_category_path, class: "btn btn-success mx-1") do %>
+          <i class='fa fa-chart-pie'></i> By category
+        <% end %>
+        <%= button_tag( formaction: reports_report_by_dates_path, class: "btn btn-warning mx-1") do %>
+          <i class="fa-regular fa-chart-bar"></i> By days
+        <% end %>
     </div>
 <% end %>
