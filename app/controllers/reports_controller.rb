@@ -1,50 +1,42 @@
 class ReportsController < ApplicationController
+  before_action :with_required_params,
+                :validate_dates_format,
+                :set_money_flow,
+                except: [:index]
+
   def index; end
 
   def report_by_category
-    with_required_params do
-      with_valid_dates_format do |date_range|
-        @date_range = date_range
-        money_flow = Category.money_flows.key(params[:money_flow].to_i)
-        @operations_report = Operation.send("#{money_flow}_report_by_category", @date_range)
-      end
-    end
+    @operations_report = Operation.send("#{@money_flow}_report_by_category", @date_range)
   end
 
   def report_by_dates
-    with_required_params do
-      with_valid_dates_format do |date_range|
-        @date_range = date_range
-        @categories = Category.select(:id, :name).where(money_flow: params['money_flow'])
+    @operations_report = Operation.send("#{@money_flow}_report_by_dates", @date_range)
+  end
 
-        money_flow = Category.money_flows.key(params[:money_flow].to_i)
-        @operations_report = Operation.send("#{money_flow}_report_by_date", @date_range)
-
-        return unless params['category_id'].present?
-
-        @operations_report = Operation.where(category_id: params['category_id'])
-                                      .send("#{money_flow}_report_by_date", @date_range)
-      end
-    end
+  def report_by_dates_per_category
+    @operations_report = Operation.where(category_id: params['category_id']).send("#{@money_flow}_report_by_dates",
+                                                                                  @date_range)
+    render :report_by_dates
   end
 
   private
 
-  def with_required_params
-    unless params['date_range'].present? && Category.money_flows.values.include?(params['money_flow'].to_i)
-      flash[:alert] = 'Please select valid date range and operation type below:'
-      render :index, status: :unprocessable_entity and return
-    end
-    yield
+  def set_money_flow
+    @money_flow = Category.money_flows.key(params[:money_flow].to_i)
   end
 
-  def with_valid_dates_format
-    begin
-      date_range = DateRangeService.new(params[:date_range])
-    rescue Date::Error
-      flash[:alert] = 'Invalid date format'
-      render :index, status: :unprocessable_entity and return
-    end
-    yield date_range
+  def with_required_params
+    return if params['date_range'].present? && Category.money_flows.values.include?(params['money_flow'].to_i)
+
+    flash[:alert] = 'Please select valid date range and operation type below:'
+    render :index, status: :unprocessable_entity and return
+  end
+
+  def validate_dates_format
+    @date_range = DateRangeService.new(params[:date_range])
+  rescue Date::Error
+    flash[:alert] = 'Invalid date format'
+    render :index, status: :unprocessable_entity and return
   end
 end

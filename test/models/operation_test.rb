@@ -44,21 +44,21 @@ class OperationTest < ActiveSupport::TestCase
     assert_equal(expected, report)
     assert_equal(2, report.size)
   end
-  test '#income_report_by_date' do
+  test '#income_report_by_dates' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per month, amount 1000
     date_range = DateRangeService.new('2023-01-01 to 2023-02-01')
-    report = Operation.income_report_by_date(date_range)
+    report = Operation.income_report_by_dates(date_range)
     expected = { '2023-02-01' => BigDecimal(1000) }
 
     assert_equal(expected, report)
     assert_equal(1, report.size)
   end
-  test '#spending_report_by_date' do
+  test '#spending_report_by_dates' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per day, amount 50
     date_range = DateRangeService.new('2023-01-10 to 2023-01-14')
-    report = Operation.spending_report_by_date(date_range)
+    report = Operation.spending_report_by_dates(date_range)
     expected = {
       '2023-01-10' => BigDecimal(50),
       '2023-01-11' => BigDecimal(50),

@@ -21,6 +21,10 @@ module ReportsHelper
     }.to_json
   end
 
+  def categories_list_by_money_flow
+    Category.select(:id, :name).where(money_flow: params['money_flow'])
+  end
+
   def total
     @operations_report.values.sum.round
   end
@@ -38,7 +42,7 @@ module ReportsHelper
   end
 
   def category_report_by_dates_path(category_id)
-    reports_report_by_dates_path(date_range: @date_range, money_flow: params['money_flow'], category_id:)
+    reports_report_by_dates_per_category_path(category_id:, date_range: @date_range, money_flow: params['money_flow'])
   end
 
   def report_by_category_path(direction)
