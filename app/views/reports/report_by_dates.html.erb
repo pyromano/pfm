@@ -15,7 +15,7 @@
                     <li class="nav-item">
                         <%= link_to "All",  all_categories_report_by_dates_path, class:"nav-link #{ 'active' unless params['category_id'].present? }" %>
                     </li>
-                    <% @categories.each do |c| %>
+                    <% categories_list_by_money_flow.each do |c| %>
                         <li class="nav-item">
                             <%= link_to c.name, category_report_by_dates_path(c.id), class:"nav-link  #{ 'active' if c.id == params['category_id'].to_i }" %>
                         </li>

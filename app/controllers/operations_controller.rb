@@ -6,7 +6,6 @@ class OperationsController < ApplicationController
     @q = Operation.ransack params[:q]
     @operations = @q.result.includes(:category).all.page params[:page]
     @operations = @q.result.includes(:category).page(params[:page]).order('id DESC')
-    @categories_list = Category.select(:id, :name).order(:name)
   end
 
   # GET /operations/1 or /operations/1.json

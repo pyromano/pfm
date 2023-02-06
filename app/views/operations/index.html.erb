@@ -8,7 +8,7 @@
   <div class="col-md-12">
     <div class="float-start">
       <%= search_form_for @q, class: "input-group" do |f| %>
-        <%= f.select :category_id_eq, options_from_collection_for_select(@categories_list, :id, :name, @q.category_id_eq), { :include_blank => 'Select'}, {class: 'form-control rounded'} %>
+        <%= f.select :category_id_eq, options_from_collection_for_select(categories_list, :id, :name, @q.category_id_eq), { :include_blank => 'Select'}, {class: 'form-control rounded'} %>
         <%= f.submit "Filter", class: 'btn btn-outline-success' %>
       <% end %>
     </div>
