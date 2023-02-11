@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  @@money_flows = { 'spending' => 1, 'income' => 2 }
+  @@money_flows = { 'spending' => 1, 'income' => 2, 'saving' => 3, 'investment' => 4 }
   cattr_reader :money_flows
 
   has_many :operations, dependent: :delete_all

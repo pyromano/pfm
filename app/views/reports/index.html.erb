@@ -6,11 +6,17 @@
 </div>
 <div class="row">
     <div class="col-sm-12 col-md-5 col-xl-3">
+  <% if @report && @report.errors.any? %>
     <div style="color: red">
-        <% flash.each do |type, msg| %>
-            <h6><%= msg %></h6>
+      <h3><%= pluralize(@report.errors.count, "error") %>:</h3>
+
+      <ul>
+        <% @report.errors.each do |error| %>
+          <li><%= error.full_message %></li>
         <% end %>
+      </ul>
     </div>
+  <% end %>
         <%= render 'form' %>
     </div>
     <div class="col mt-2 justify-content-center">

@@ -29,29 +29,13 @@ module ReportsHelper
     @operations_report.values.sum.round
   end
 
-  def prev_month
-    "#{@date_range.prev_month.beginning_of_month} to #{@date_range.prev_month.end_of_month}"
+  def report_all_categories_path
+    reports_report_path(date_range: @report.date_range, money_flow: params['money_flow'],
+                        report_type: params['report_type'])
   end
 
-  def next_month
-    "#{@date_range.next_month.beginning_of_month} to #{@date_range.next_month.end_of_month}"
-  end
-
-  def all_categories_report_by_dates_path
-    reports_report_by_dates_path(date_range: @date_range, money_flow: params['money_flow'])
-  end
-
-  def category_report_by_dates_path(category_id)
-    reports_report_by_dates_per_category_path(category_id:, date_range: @date_range, money_flow: params['money_flow'])
-  end
-
-  def report_by_category_path(direction)
-    reports_report_by_category_path(date_range: send(direction), money_flow: params['money_flow'],
-                                    category_id: params['category_id'])
-  end
-
-  def report_by_dates_path(direction)
-    reports_report_by_dates_path(date_range: send(direction), money_flow: params['money_flow'],
-                                 category_id: params['category_id'])
+  def report_by_category_path(category_id)
+    reports_report_path(category_id:, date_range: @report.date_range, money_flow: params['money_flow'],
+                        report_type: params['report_type'])
   end
 end

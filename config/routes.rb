@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   get 'reports/index'
-  get 'reports/report_by_category'
-  get 'reports/report_by_dates'
-  get 'reports/report_by_dates/category/:category_id', to: 'reports#report_by_dates_per_category',
-                                                       as: 'reports_report_by_dates_per_category'
+  get 'reports/report'
   get 'main/index'
   resources :operations
   resources :categories
