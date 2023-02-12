@@ -37,8 +37,7 @@ class OperationReportTest < ActiveSupport::TestCase
   test '#report_by_category' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     date_range = Date.parse('2023-01-01')..Date.parse('2023-02-01')
-    money_flow_id = Category.income_code
-    report = Report.report_by_category(date_range, money_flow_id, nil)
+    report = Report.report_by_category(date_range, MoneyFlow.income, nil)
     expected = { 'income' => BigDecimal(1000) }
 
     assert_equal(expected, report)
@@ -47,8 +46,7 @@ class OperationReportTest < ActiveSupport::TestCase
   test '#report_by_day spending' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     date_range = Date.parse('2023-01-09')..Date.parse('2023-01-20')
-    money_flow_id = Category.spending_code
-    report = Report.report_by_day(date_range, money_flow_id, nil)
+    report = Report.report_by_day(date_range, MoneyFlow.spending, nil)
 
     expected = {}
     [*date_range].each { |e| expected[e] = 50 }
@@ -60,8 +58,7 @@ class OperationReportTest < ActiveSupport::TestCase
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per month, amount 1000
     date_range = Date.parse('2023-01-01')..Date.parse('2023-02-01')
-    money_flow_id = Category.income_code
-    report = Report.report_by_week(date_range, money_flow_id, nil)
+    report = Report.report_by_week(date_range, MoneyFlow.income, nil)
     expected = { Date.parse('2023-01-29') => BigDecimal(1000) }
 
     assert_equal(expected, report)
@@ -71,8 +68,7 @@ class OperationReportTest < ActiveSupport::TestCase
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per day, amount 50
     date_range = Date.parse('2023-01-01')..Date.parse('2023-02-01')
-    money_flow_id = Category.spending_code
-    report = Report.report_by_week(date_range, money_flow_id, nil)
+    report = Report.report_by_week(date_range, MoneyFlow.spending, nil)
     expected = {
       Date.parse('2023-01-01') => BigDecimal(50 * 6),
       Date.parse('2023-01-08') => BigDecimal(50 * 7),
@@ -88,8 +84,7 @@ class OperationReportTest < ActiveSupport::TestCase
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per day, amount 50
     date_range = Date.parse('2023-01-01')..Date.parse('2023-02-20')
-    money_flow_id = Category.spending_code
-    report = Report.report_by_month(date_range, money_flow_id, nil)
+    report = Report.report_by_month(date_range, MoneyFlow.spending, nil)
     expected = {
       Date.parse('2023-01-01') => BigDecimal(50 * 30),
       Date.parse('2023-02-01') => BigDecimal(50 * 20)

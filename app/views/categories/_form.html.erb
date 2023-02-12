@@ -23,7 +23,7 @@
 
   <div>
     <%= form.label :money_flow, class: "form-label" %>
-    <%= form.select(:money_flow, Category.money_flows, {}, {class: "form-select"}) %>
+    <%= form.select(:money_flow, MoneyFlow::TYPES, {}, {class: "form-select"}) %>
   </div>
 
   <div>

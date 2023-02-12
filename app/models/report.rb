@@ -5,7 +5,7 @@ class Report < ApplicationRecord
   TYPES = %w[category day week month year].freeze
 
   # query section
-  scope :by_money_flow, ->(flow_code) { joins(:category).where(categories: { money_flow: flow_code }) }
+  scope :by_money_flow, ->(money_flow_id) { joins(:category).where(categories: { money_flow: money_flow_id }) }
   scope :by_category, ->(cat) { where(category_id: cat) if cat.present? }
 
   scope :group_by_category, ->(_) { joins(:category).group('categories.name') }
@@ -47,7 +47,7 @@ class Report < ApplicationRecord
   end
 
   def validate_money_flow
-    return if Category.money_flows.values.include?(money_flow.to_i)
+    return if MoneyFlow.include?(money_flow)
 
     errors.add(:money_flow, 'does not exist')
   end

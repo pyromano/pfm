@@ -8,15 +8,15 @@
 
 # outcome
 categories = [
-  { name: 'Food', desc: 'Food prices and spending.', flow: Category.spending_code,
+  { name: 'Food', desc: 'Food prices and spending.', flow: MoneyFlow.spending,
     faker: 'Faker::Food.ingredient', operations: 58 },
-  {  name: 'Devices', desc: 'Tech stuff', flow: Category.spending_code,
+  {  name: 'Devices', desc: 'Tech stuff', flow: MoneyFlow.spending,
      faker: 'Faker::Device.model_name', operations: 1 },
-  {  name: 'House', desc: 'Appliance and other houshold spending.', flow: Category.spending_code,
+  {  name: 'House', desc: 'Appliance and other houshold spending.', flow: MoneyFlow.spending,
      faker: 'Faker::House.furniture', operations: 10 },
-  {  name: 'Stuff', desc: 'The monthly cost of using rental property.', flow: Category.spending_code,
+  {  name: 'Stuff', desc: 'The monthly cost of using rental property.', flow: MoneyFlow.spending,
      faker: 'Faker::Marketing.buzzwords', operations: 20 },
-  {  name: 'Hobby', desc: 'Some spending for hobby.', flow: Category.spending_code,
+  {  name: 'Hobby', desc: 'Some spending for hobby.', flow: MoneyFlow.spending,
      faker: 'Faker::Hobby.activity', operations: 18 }
 ]
 
@@ -32,9 +32,9 @@ categories.each do |c|
 end
 
 # income
-sal = Category.create(name: 'Salary', description: 'Main income', money_flow: Category.income_code)
+sal = Category.create(name: 'Salary', description: 'Main income', money_flow: MoneyFlow.income)
 sp = Category.create(name: 'Side projects', description: 'Side projects income',
-                     money_flow: Category.income_code)
+                     money_flow: MoneyFlow.income)
 Operation.create(amount: 22_000, odate: DateTime.now - 90.days, description: 'Salary', category_id: sal.id)
 Operation.create(amount: 22_000, odate: DateTime.now - 60.days, description: 'Salary', category_id: sal.id)
 Operation.create(amount: 22_000, odate: DateTime.now - 30.days, description: 'Salary', category_id: sal.id)

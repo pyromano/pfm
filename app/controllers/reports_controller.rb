@@ -1,7 +1,4 @@
 class ReportsController < ApplicationController
-  before_action :set_money_flow,
-                except: [:index]
-
   VIEWS = {
     day: :report_by_dates,
     week: :report_by_dates,
@@ -30,9 +27,5 @@ class ReportsController < ApplicationController
 
   def report_params
     params.permit(:date_range, :money_flow, :report_type, :category_id)
-  end
-
-  def set_money_flow
-    @money_flow = Category.money_flows.key(params[:money_flow].to_i)
   end
 end

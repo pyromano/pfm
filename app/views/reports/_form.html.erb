@@ -5,7 +5,7 @@
     </div>
     <div data-controller="money-flow" class="mt-3">
         <%= form.label "Operation", class: "form-label" %>
-        <%= form.select(:money_flow, Category.money_flows.to_a,{selected: params[:money_flow]}, class: "form-select" ) %>
+        <%= form.select(:money_flow, MoneyFlow::TYPES,{selected: params[:money_flow]}, class: "form-select" ) %>
     </div>
     <div data-controller="money-flow" class="mt-3">
         <%= form.label "Report by", class: "form-label" %>
