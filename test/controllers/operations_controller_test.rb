@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class OperationsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
   setup do
+    sign_in users(:one)
     @operation = operations(:one)
   end
 

@@ -14,7 +14,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   </head>
   <body>
-    <%= render 'shared/nav' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/nav' %>
+    <% end %>
     <main role="main">
       <div class="container">
         <%= yield %>
@@ -24,7 +26,11 @@
       </div> <!-- /container -->
     </main>
     <footer class="container ">
-      <p>&copy; Personal Finance Manager 2023</p>
+      <p>&copy; Personal Finance Manager 2023
+        <a href="https://github.com/pyromano/pfm" class="link-dark">
+          <i class="fab fa-github"></i>
+        </a>
+      </p>
     </footer>
   </body>
 </html>

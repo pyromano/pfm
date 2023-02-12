@@ -4,25 +4,30 @@ one:
   name: MyStringOne
   description: MyString
   money_flow: 1
+  user: one
 
 two:
   name: MyStringTwo
   description: MyString
   money_flow: 1
+  user: one
 
 valid:
   name: MyStringValid
   description: MyString
   money_flow: 1
+  user: one
 
 income_category:
   name: income
   description: MyDesc
   money_flow: 2
+  user: one
 
 <% (1..13).map do |i|%>
 out_category<%= i %>:
   name: spending_category_<%= i %>
   description: MyDesc
   money_flow: 1
+  user: one
 <% end %>

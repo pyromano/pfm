@@ -1,10 +1,10 @@
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /operations or /operations.json
   def index
-    @q = Operation.ransack params[:q]
-    @operations = @q.result.includes(:category).all.page params[:page]
+    @q = current_user.operations.ransack params[:q]
     @operations = @q.result.includes(:category).page(params[:page]).order('id DESC')
   end
 
@@ -13,7 +13,7 @@ class OperationsController < ApplicationController
 
   # GET /operations/new
   def new
-    @operation = Operation.new
+    @operation = current_user.operations.new
   end
 
   # GET /operations/1/edit
@@ -21,7 +21,7 @@ class OperationsController < ApplicationController
 
   # POST /operations or /operations.json
   def create
-    @operation = Operation.new(operation_params)
+    @operation = current_user.operations.new(operation_params)
 
     respond_to do |format|
       if @operation.save
@@ -61,7 +61,7 @@ class OperationsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_operation
-    @operation = Operation.find(params[:id])
+    @operation = current_user.operations.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

@@ -22,7 +22,7 @@ module ReportsHelper
   end
 
   def categories_list_by_money_flow
-    Category.select(:id, :name).where(money_flow: params['money_flow'])
+    current_user.categories.select(:id, :name).where(money_flow: params['money_flow'])
   end
 
   def total

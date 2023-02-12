@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# demo user
+user = User.create(
+  email: 'demo@example.com',
+  password: '123456'
+)
 # outcome
 categories = [
   { name: 'Food', desc: 'Food prices and spending.', flow: MoneyFlow.spending,
@@ -21,26 +26,26 @@ categories = [
 ]
 
 categories.each do |c|
-  category = Category.create(name: c[:name], description: c[:desc], money_flow: c[:flow])
+  category = user.categories.create(name: c[:name], description: c[:desc], money_flow: c[:flow])
   (1..c[:operations]).each do |_|
     price = Faker::Commerce.price
     date = Faker::Time.between(from: DateTime.now - 90.days, to: DateTime.now)
     faker, faker_method = c[:faker].split('.')
     desc = faker.constantize.send(faker_method)
-    category.operations.build(amount: price, odate: date, description: desc).save
+    category.operations.build(amount: price, odate: date, description: desc, user_id: user.id).save
   end
 end
 
 # income
-sal = Category.create(name: 'Salary', description: 'Main income', money_flow: MoneyFlow.income)
-sp = Category.create(name: 'Side projects', description: 'Side projects income',
-                     money_flow: MoneyFlow.income)
-Operation.create(amount: 22_000, odate: DateTime.now - 90.days, description: 'Salary', category_id: sal.id)
-Operation.create(amount: 22_000, odate: DateTime.now - 60.days, description: 'Salary', category_id: sal.id)
-Operation.create(amount: 22_000, odate: DateTime.now - 30.days, description: 'Salary', category_id: sal.id)
+sal = user.categories.create(name: 'Salary', description: 'Main income', money_flow: MoneyFlow.income)
+sp = user.categories.create(name: 'Side projects', description: 'Side projects income',
+                            money_flow: MoneyFlow.income)
+user.operations.create(amount: 22_000, odate: DateTime.now - 90.days, description: 'Salary', category_id: sal.id)
+user.operations.create(amount: 22_000, odate: DateTime.now - 60.days, description: 'Salary', category_id: sal.id)
+user.operations.create(amount: 22_000, odate: DateTime.now - 30.days, description: 'Salary', category_id: sal.id)
 
-Operation.create(amount: 12_000, odate: DateTime.now - 10.days, description: 'Side projects', category_id: sp.id)
-Operation.create(amount: 1_000, odate: DateTime.now - 14.days, description: 'Side projects', category_id: sp.id)
-Operation.create(amount: 10_000, odate: DateTime.now - 26.days, description: 'Side projects', category_id: sp.id)
-Operation.create(amount: 2_000, odate: DateTime.now - 30.days, description: 'Side projects', category_id: sp.id)
-Operation.create(amount: 14_000, odate: DateTime.now - 41.days, description: 'Side projects', category_id: sp.id)
+user.operations.create(amount: 12_000, odate: DateTime.now - 10.days, description: 'Side projects', category_id: sp.id)
+user.operations.create(amount: 1_000, odate: DateTime.now - 14.days, description: 'Side projects', category_id: sp.id)
+user.operations.create(amount: 10_000, odate: DateTime.now - 26.days, description: 'Side projects', category_id: sp.id)
+user.operations.create(amount: 2_000, odate: DateTime.now - 30.days, description: 'Side projects', category_id: sp.id)
+user.operations.create(amount: 14_000, odate: DateTime.now - 41.days, description: 'Side projects', category_id: sp.id)

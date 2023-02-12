@@ -11,6 +11,12 @@
                 <li class="nav-item"><%= link_to "Report", reports_index_path, class: "nav-link #{ 'active' if current_page?(reports_index_path) }" %></li>
             </ul>
             <div class="d-flex" >
+                <% if user_signed_in? %>
+                    <span class="navbar-text me-3"> <%= link_to current_user.email, edit_user_registration_path %> </span>
+                    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-secondary" %>
+                <% else %>
+                    <%= button_to "Sign in", new_user_session_path, class: "btn btn-secondary" %>
+                <% end %>
             </div>
         </div>
     </div>

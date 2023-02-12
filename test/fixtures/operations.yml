@@ -5,18 +5,21 @@ one:
   odate: 2022-12-31 20:45:38
   description: MyString
   category: one
+  user: one
 
 two:
   amount: 9.99
   odate: 2022-12-31 20:45:38
   description: MyString
   category: two
+  user: one
 
 valid:
   amount: 9.99
   odate: 2022-12-31 20:45:38
   description: MyString
   category: valid
+  user: one
 
 # income operations every month
 <% (1..4).map do |i|%> #2023-1-1 to 2023-5-1
@@ -25,6 +28,7 @@ income_operation<%= i %>:
   odate: <%= Date.new(2023,1,1) + i.month %>
   description: MyDesc
   category: income_category
+  user: one
 <% end %>
 
 # spending operations every day
@@ -34,4 +38,5 @@ out_operation<%= i %>:
   odate: <%= Date.new(2023,1,1) + i.day %>
   description: MyDesc
   category: out_category<%= (i+10)/10 %>
+  user: one
 <% end %>

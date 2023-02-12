@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :authenticate_user!
   VIEWS = {
     day: :report_by_dates,
     week: :report_by_dates,
@@ -12,10 +13,10 @@ class ReportsController < ApplicationController
   def report
     @report = Report.new(report_params)
     if @report.valid?
-      @operations_report = Report.send("report_by_#{@report.report_type}",
-                                       @report.daterange,
-                                       @report.money_flow,
-                                       @report.category_id)
+      @operations_report = current_user.reports.send("report_by_#{@report.report_type}",
+                                                     @report.daterange,
+                                                     @report.money_flow,
+                                                     @report.category_id)
 
       render VIEWS[params[:report_type].to_sym]
     else
