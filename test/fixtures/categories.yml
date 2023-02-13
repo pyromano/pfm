@@ -26,7 +26,7 @@ income_category:
 
 <% (1..13).map do |i|%>
 out_category<%= i %>:
-  name: spending_category_<%= i %>
+  name: expenses_category_<%= i %>
   description: MyDesc
   money_flow: 1
   user: one

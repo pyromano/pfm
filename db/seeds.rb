@@ -13,15 +13,15 @@ user = User.create(
 )
 # outcome
 categories = [
-  { name: 'Food', desc: 'Food prices and spending.', flow: MoneyFlow.spending,
+  { name: 'Food', desc: 'Food prices and spending.', flow: MoneyFlow.expenses,
     faker: 'Faker::Food.ingredient', operations: 58 },
-  {  name: 'Devices', desc: 'Tech stuff', flow: MoneyFlow.spending,
+  {  name: 'Devices', desc: 'Tech stuff', flow: MoneyFlow.expenses,
      faker: 'Faker::Device.model_name', operations: 1 },
-  {  name: 'House', desc: 'Appliance and other houshold spending.', flow: MoneyFlow.spending,
+  {  name: 'House', desc: 'Appliance and other houshold spending.', flow: MoneyFlow.expenses,
      faker: 'Faker::House.furniture', operations: 10 },
-  {  name: 'Stuff', desc: 'The monthly cost of using rental property.', flow: MoneyFlow.spending,
+  {  name: 'Stuff', desc: 'The monthly cost of using rental property.', flow: MoneyFlow.expenses,
      faker: 'Faker::Marketing.buzzwords', operations: 20 },
-  {  name: 'Hobby', desc: 'Some spending for hobby.', flow: MoneyFlow.spending,
+  {  name: 'Hobby', desc: 'Some spending for hobby.', flow: MoneyFlow.expenses,
      faker: 'Faker::Hobby.activity', operations: 18 }
 ]
 

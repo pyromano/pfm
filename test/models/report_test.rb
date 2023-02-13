@@ -43,10 +43,10 @@ class OperationReportTest < ActiveSupport::TestCase
     assert_equal(expected, report)
     assert_equal(1, report.size)
   end
-  test '#report_by_day spending' do
+  test '#report_by_day expenses' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     date_range = Date.parse('2023-01-09')..Date.parse('2023-01-20')
-    report = Report.report_by_day(date_range, MoneyFlow.spending, nil)
+    report = Report.report_by_day(date_range, MoneyFlow.expenses, nil)
 
     expected = {}
     [*date_range].each { |e| expected[e] = 50 }
@@ -64,11 +64,11 @@ class OperationReportTest < ActiveSupport::TestCase
     assert_equal(expected, report)
     assert_equal(1, report.size)
   end
-  test '#report_by_week spending' do
+  test '#report_by_week expenses' do
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per day, amount 50
     date_range = Date.parse('2023-01-01')..Date.parse('2023-02-01')
-    report = Report.report_by_week(date_range, MoneyFlow.spending, nil)
+    report = Report.report_by_week(date_range, MoneyFlow.expenses, nil)
     expected = {
       Date.parse('2023-01-01') => BigDecimal(50 * 6),
       Date.parse('2023-01-08') => BigDecimal(50 * 7),
@@ -84,7 +84,7 @@ class OperationReportTest < ActiveSupport::TestCase
     # 2023-1-1 to 2023-4-11 date range with filled fixtures data
     # 1 operation per day, amount 50
     date_range = Date.parse('2023-01-01')..Date.parse('2023-02-20')
-    report = Report.report_by_month(date_range, MoneyFlow.spending, nil)
+    report = Report.report_by_month(date_range, MoneyFlow.expenses, nil)
     expected = {
       Date.parse('2023-01-01') => BigDecimal(50 * 30),
       Date.parse('2023-02-01') => BigDecimal(50 * 20)

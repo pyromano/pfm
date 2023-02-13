@@ -1,5 +1,5 @@
 class MoneyFlow
-  TYPES = { 'spending' => 1,
+  TYPES = { 'expenses' => 1,
             'income' => 2,
             'saving' => 3,
             'investment' => 4 }.freeze
