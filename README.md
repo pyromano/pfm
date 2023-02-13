@@ -1,3 +1,3 @@
 # README
 
-#### pfm (Personal Finance Manager) [Demo](https://muddy-grass-5497.fly.dev)
+#### Ruby on Rails Personal Finance Manager (PFM) [Demo](https://muddy-grass-5497.fly.dev)
