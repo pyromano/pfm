@@ -5,7 +5,7 @@ class OperationsController < ApplicationController
   # GET /operations or /operations.json
   def index
     @q = current_user.operations.ransack params[:q]
-    @operations = @q.result.includes(:category).page(params[:page]).order('id DESC')
+    @operations = @q.result.includes(:category).page(params[:page]).order('odate DESC')
   end
 
   # GET /operations/1 or /operations/1.json
